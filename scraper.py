@@ -24,6 +24,14 @@ def scrape_long_comments(urls):
         comment_divs = soup.select('div#memo')
         for div in comment_divs:
             comments.append(div.get_text(strip=True))
+
+            # Due to the rate limit of embedding API, we will not use the following code
+            # The following code splits the text into lines and removes empty lines,
+            # which may result in better performance.
+            
+            # text = div.get_text(strip=False)
+            # lines = [line.strip() for line in text.split('\n') if line.strip()]
+            # comments.extend(lines)
     return comments
 
 def scrape_game_id(game_id): 
